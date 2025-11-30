@@ -20,6 +20,7 @@ bounded_integer! {
 }
 
 bounded_integer! {
+    #[allow(dead_code)]
     enum CycleInstruction {
         Subtract,
         Swap,
