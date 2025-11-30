@@ -1,0 +1,13 @@
+[package]
+name = "pufferfish"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.100"
+bounded-integer = { version = "0.6.1", features = ["std", "macro", "num-traits02"] }
+divisors_fixed = "0.4.0"
+grid = "1.0.0"
+itertools = "0.14.0"
+rand = "0.9.2"
+thiserror = "2.0.17"
