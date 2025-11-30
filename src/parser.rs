@@ -83,7 +83,7 @@ pub fn populate_tanks(names: HashSet<String>) -> Result<Vec<Tank>, anyhow::Error
         .into_iter()
         .map(|name| {
             name.bytes()
-                .try_fold(Tank::new(name.clone(), Grid::default()), |acc, x| {
+                .try_fold(Tank::new(name.clone(), Grid::new(5, 4)), |acc, x| {
                     if x == b'\'' {
                         Ok(acc.swizzle())
                     } else {
@@ -137,7 +137,7 @@ mod test {
     }
 
     #[test]
-    fn test_tank_from_mask() {
+    fn test_tank_from_mask_and_name() {
         let mask = FONT[0];
         let tank = Tank::from_mask_and_name(String::default(), mask).unwrap();
         let expected = Grid::from_vec(
@@ -145,5 +145,19 @@ mod test {
             4,
         );
         assert_eq!(tank.grid, expected);
+    }
+
+    #[test]
+    fn test_populate_tanks() {
+        let names = HashSet::from([String::from("ab")]);
+        let tanks = populate_tanks(names).unwrap();
+        assert_eq!(tanks[0].name, String::from("ab"));
+        assert_eq!(
+            tanks[0].grid,
+            Grid::from_vec(
+                vec![1, 0, 0, 0, 1, 2, 2, 1, 2, 0, 0, 2, 2, 0, 0, 2, 1, 2, 2, 1],
+                4
+            )
+        );
     }
 }

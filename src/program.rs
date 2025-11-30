@@ -60,7 +60,7 @@ impl Default for InstructionPointer {
 #[derive(Debug, PartialEq, Eq)]
 pub struct Tank {
     pub(crate) grid: Grid<usize>,
-    name: String,
+    pub(crate) name: String,
     cycle_instr: CycleInstruction,
     acc: usize,
 }
